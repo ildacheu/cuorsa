@@ -4,8 +4,8 @@
 # If you need more help, visit the Dockerfile reference guide at
 # https://docs.docker.com/go/dockerfile-reference/
 
-ARG RUST_VERSION=1.74.0
-ARG APP_NAME=linkshrtnr-rust-api
+ARG RUST_VERSION=1.76.0
+ARG APP_NAME=cuorsa
 
 ################################################################################
 # xx is a helper for cross-compilation.
@@ -19,12 +19,12 @@ ARG APP_NAME
 WORKDIR /app
 
 COPY /templates /app/templates
-COPY /migrations /app/migrations
+COPY /src/migrations /app/src/migrations
 # Copy cross-compilation utilities from the xx stage.
 COPY --from=xx / /
 
 # Install host build dependencies.
-RUN apk add --no-cache clang lld musl-dev git file
+RUN apk add --no-cache clang lld musl-dev git file openssl-dev
 
 # This is the architecture you’re building for, which is passed in by the builder.
 # Placing it here allows the previous steps to be cached across architectures.
@@ -44,11 +44,13 @@ RUN xx-apk add --no-cache musl-dev gcc
 RUN --mount=type=bind,source=src,target=src \
     --mount=type=bind,source=Cargo.toml,target=Cargo.toml \
     --mount=type=bind,source=Cargo.lock,target=Cargo.lock \
+    #--mount=type=bind,source=prod.env,target=.env \
+    --mount=type=bind,source=sqlx-data.json,target=sqlx-data.json \
     --mount=type=cache,target=/app/target/,id=rust-cache-${APP_NAME}-${TARGETPLATFORM} \
     --mount=type=cache,target=/usr/local/cargo/git/db \
     --mount=type=cache,target=/usr/local/cargo/registry/ \
     <<EOF
-set -e
+set -ex
 xx-cargo build --locked --release --target-dir ./target
 cp ./target/$(xx-cargo --print-target-triple)/release/$APP_NAME /bin/server
 xx-verify /bin/server
@@ -63,13 +65,13 @@ RUN corepack enable
 
 # copy on over all the dependencies
 COPY tailwind.config.js .
-COPY styles /app/styles
-COPY assets /app/assets
+COPY /src/styles /app/src/styles
+COPY /assets /app/assets
 # we'll also copy the templates over so tailwind can scan for unused class utilities, omitting them from the final output
-COPY templates /app/templates
+COPY /templates /app/templates
 
 # build our css
-RUN pnpm dlx tailwindcss -i ./styles/tailwind.css -o /app/assets/main.css
+RUN pnpm dlx tailwindcss -i ./src/styles/tailwind.css -o /app/assets/main.css
 
 # stage 3, copy over our build artifacts and run
 # We do not need the Rust toolchain to run the binary!

@@ -19,7 +19,6 @@ use dotenv;
 use sqlx::{types::Uuid, Error, PgPool};
 use uuid::Uuid as uuid;
 
-#[derive(Debug)]
 struct User {
     id: Uuid,
     email: String,
