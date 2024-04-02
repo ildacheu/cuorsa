@@ -556,6 +556,11 @@ video {
   display: flex;
 }
 
+.size-16 {
+  width: 4rem;
+  height: 4rem;
+}
+
 .w-full {
   width: 100%;
 }
@@ -3157,14 +3162,14 @@ video {
   font-family: Fjalla One, sans-serif;
 }
 
-.text-2xl {
-  font-size: 1.5rem;
-  line-height: 2rem;
+.text-7xl {
+  font-size: 4.5rem;
+  line-height: 1;
 }
 
-.text-lg {
-  font-size: 1.125rem;
-  line-height: 1.75rem;
+.text-9xl {
+  font-size: 8rem;
+  line-height: 1;
 }
 
 .font-bold {
@@ -4425,16 +4430,10 @@ video {
   color: rgb(255 255 255 / 0.95);
 }
 
-@media (min-width: 640px) {
-  .sm\:text-7xl {
-    font-size: 4.5rem;
-    line-height: 1;
-  }
-}
-
 @media (min-width: 768px) {
-  .md\:min-w-\[66\%\] {
-    min-width: 66%;
+  .md\:text-9xl {
+    font-size: 8rem;
+    line-height: 1;
   }
 }
 

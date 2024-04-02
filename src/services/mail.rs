@@ -67,6 +67,7 @@ pub trait Email {
 #[async_trait]
 impl Email for AuthToken {
     async fn get_token(&self) -> Result<ResponseWithToken> {
+        info!("get token");
         let client = reqwest::Client::new();
         let params = [
             (
@@ -93,6 +94,7 @@ impl Email for AuthToken {
             .await?
             .json::<ResponseWithToken>()
             .await?;
+        info!("{:#?}", res);
         println!("{:#?}", res);
         Ok(res)
     }
@@ -125,7 +127,7 @@ impl Email for AuthToken {
                 subject: "Engraziel per l'annunzia".to_string(),
                 body: Body {
                     content_type: "HTML".to_string(),
-                    content: format!("Smacca cheu per serrar giu l'annunzia {}", link),
+                    content: format!(r#"Smacca <a href="{}">cheu</a> per serrar giu l'annunzia"#, link),
                 },
                 to_recipients: [Recipient {
                     email_address: Address {

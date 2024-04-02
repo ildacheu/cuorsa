@@ -51,7 +51,7 @@ async fn register(
 ) -> Result<String, (StatusCode, String)> {
     if let Ok(user) = insert_participant(&payload, &ctx.db).await {
         let mut email = state.lock().await;
-        let _ = email
+        email
             .email_service
             .send_email(
                 &payload.email,

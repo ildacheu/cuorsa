@@ -23,6 +23,7 @@ async fn main() -> anyhow::Result<()> {
 
     info!("Initialized router!");
     let url = dotenv::var("DATABASE_URL").expect("DATABASE_URL is not set in .env file");
+    info!("{}", url);
 
     let sqlx_connection = PgPoolOptions::new()
         .max_connections(95) // TODO: Set this to a reasonable value

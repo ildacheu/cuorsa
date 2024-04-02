@@ -31,7 +31,7 @@ RUN apk add --no-cache clang lld musl-dev git file openssl-dev
 ARG TARGETPLATFORM
 
 # Install cross-compilation build dependencies.
-RUN xx-apk add --no-cache musl-dev gcc
+RUN xx-apk add --no-cache musl-dev gcc openssl-dev
 
 # Build the application.
 # Leverage a cache mount to /usr/local/cargo/registry/
