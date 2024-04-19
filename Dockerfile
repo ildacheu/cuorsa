@@ -33,7 +33,7 @@ RUN adduser \
 USER appuser
 
 # Copy the executable from the "build" stage.
-COPY --from=build /app/target/release/$APP_NAME/cuorsa /bin/
+COPY --from=build /app/target/release/cuorsa /bin/
 COPY /assets ./assets
 COPY /templates ./templates
 
