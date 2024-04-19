@@ -54,33 +54,33 @@ RUN --mount=type=bind,source=src,target=src \
     cp ./target/$(xx-cargo --print-target-triple)/release/$APP_NAME /bin/server \
     xx-verify /bin/server
 
-FROM node:buster-slim as node_builder
+# FROM node:buster-slim as node_builder
 
-WORKDIR /app
+# WORKDIR /app
 
-# we'll use pnpm to ensure we're consistent across the dev and release environments
-RUN corepack enable
+# # we'll use pnpm to ensure we're consistent across the dev and release environments
+# RUN corepack enable
 
-# copy on over all the dependencies
-COPY tailwind.config.js .
-COPY /src/styles /app/src/styles
-COPY /assets /app/assets
-# we'll also copy the templates over so tailwind can scan for unused class utilities, omitting them from the final output
-COPY /templates /app/templates
+# # copy on over all the dependencies
+# COPY tailwind.config.js .
+# COPY /src/styles /app/src/styles
+# COPY /assets /app/assets
+# # we'll also copy the templates over so tailwind can scan for unused class utilities, omitting them from the final output
+# COPY /templates /app/templates
 
-# build our css
-RUN pnpm dlx tailwindcss -i ./src/styles/tailwind.css -o /app/assets/main.css
+# # build our css
+# RUN pnpm dlx tailwindcss -i ./src/styles/tailwind.css -o /app/assets/main.css
 
 # stage 3, copy over our build artifacts and run
 # We do not need the Rust toolchain to run the binary!
-FROM debian:buster-slim AS runtime
+# FROM debian:buster-slim AS runtime
 
-WORKDIR /app
+# WORKDIR /app
 
-# we'll copy over the executable from our server builder and the compiled tailwind assets separately - layer caching FTW!
-COPY --from=build /bin/server /bin/
-COPY --from=node_builder /app/assets ./assets
-COPY --from=node_builder /app/templates ./templates
+# # we'll copy over the executable from our server builder and the compiled tailwind assets separately - layer caching FTW!
+# COPY --from=build /bin/server /bin/
+# COPY --from=node_builder /app/assets ./assets
+# COPY --from=node_builder /app/templates ./templates
 
 ################################################################################
 # Create a new stage for running the application that contains the minimal
@@ -109,8 +109,8 @@ USER appuser
 
 # Copy the executable from the "build" stage.
 COPY --from=build /bin/server /bin/
-COPY --from=node_builder /app/assets ./assets
-COPY --from=node_builder /app/templates ./templates
+COPY /assets ./assets
+COPY /templates ./templates
 
 # Expose the port that the application listens on.
 EXPOSE 3000 
