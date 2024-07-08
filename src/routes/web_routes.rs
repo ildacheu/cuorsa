@@ -7,7 +7,16 @@ use axum::{
 };
 
 pub fn get_routes() -> Router {
-    Router::new().route("/", get(get_register))
+    Router::new().route("/", get(get_register)).route("/dretg", get(get_dretg))
+}
+
+#[derive(Template)]
+#[template(path = "pages/dretg.html")]
+struct DretgTemplate;
+
+async fn get_dretg() -> impl IntoResponse {
+    let template = DretgTemplate {};
+    HtmlTemplate(template)
 }
 
 async fn get_register() -> impl IntoResponse {

@@ -28,20 +28,16 @@ services:
   db:
     image: postgres
     restart: always
-    user: postgres
-    volumes:
-      - dbdata:/var/lib/postgresql/data
+    # volumes:
+    #   - ./dbdata:/var/lib/postgresql/data
     environment:
-      - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=password
+      POSTGRES_USER: "postgres"
+      POSTGRES_PASSWORD: "password"
     ports:
       - 5432:5432
     healthcheck:
-      test: [ "CMD", "pg_isready" ]
+      test: [ "CMD", "pg_isready"]
       interval: 10s
       timeout: 5s
       retries: 5
-volumes:
-  dbdata:
-     external: true
 

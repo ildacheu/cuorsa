@@ -3,72 +3,62 @@
 {% block title %}Cuorsa{% endblock %}
 {% block content %}
 <div class="flex flex-col items-center font-fjalla text-white">
-    <div class="bg-verd px-5 py-4 flex justify-center w-full">
-        <p class="text-9xl text-center md:text-9xl flex-auto">CUORSA DA CHISTAS DA SAVUN</p>
+  <div class="bg-verd px-5 py-4 flex justify-center w-full">
+    <p class="text-9xl text-center lg:text-7xl flex-auto">CUORSA DA CHISTAS DA SAVUN</p>
+  </div>
+  <div class="bg-tgietschen flex justify-center">
+    <div class=" w-full lg:w-1/2">
+      <img src="/assets/placat.png" alt="placat" width="1275px" height="828px">
     </div>
-
-    <div class="flex flex-1 w-full bg-slate-100 object-contain">
-        <img src="/assets/placat.png" alt="placat" width="2550px" height="1656px"> 
-    </div>
-    <div hx-ext="response-targets" class="flex justify-center bg-verd">
-        <div
-          class="flex flex-col items-center flex-1 w-full gap-8 bg-verd lg:w-1/2"
-        >
+  </div>
+  <div class="flex justify-center bg-verd">
+    <div hx-ext="response-targets" class=" lg:w-3/4">
+      <div class="flex flex-col items-center flex-1 w-full gap-8 bg-verd">
         <div>
-          <p class="text-9xl text-center md:text-9xl px-5 pt-4 ">Hallo</p>
-          <p class="text-7xl px-5 text-center">Nus, l'uniun da cultura da sport organisein questa stad ina cuorsa da chistas da savun. Ei dat dus percuors e quel che ha la pli pintga differenza da temps gudogna. Bugen astgas ti construir tia atgna chista, ella sto denton corrispunder a quellas reglas. Per quels cun dus mauns seniasters e quels che han buc gust da baghegiar sez mattein nus era a disposiziun in vehichel. Nus selegrein sche ti separticipeschas, cheusut sas ti sennunziar</p>
+          <p class="text-9xl text-center lg:text-5xl px-5 pt-4 ">Hallo</p>
+          <p class="text-5xl px-5 text-center lg:text-2xl leading-relaxed">Nus, l'uniun da cultura da sport organisein
+            questa stad ina
+            cuorsa da chistas da savun. Ei dat dus percuors e quel che ha la pli pintga differenza da temps gudogna.
+            Bugen
+            astgas ti construir tia atgna chista, ella sto denton corrispunder a quellas <a class="underline"
+              href="/assets/reglas.pdf">reglas</a>. Per quels cun dus mauns seniasters e quels che han buc gust da
+            baghegiar sez mattein nus era a disposiziun in vehichel. Nus selegrein sche ti separticipeschas, cheusut sas
+            ti sennunziar</p>
         </div>
         <div id="any-errors"></div>
-          <form
-            class="flex flex-col bg-verd p-4 text-white min-w-[80%] gap-3 text-7xl"
-            hx-post="/api/register"
-            hx-swap="innerHTML"
-            hx-target-500="#any-errors"
-          >
-            <div class="flex flex-col">
-              <label for="num">Num</label>
-              <input
-                class="w-full p-3 text-black border rounded border-[#d3d3d3]"
-                type="text"
-                name="num"
-                id="num"
-              />
-            </div>
-            <div class="flex flex-col">
-              <label for="prenum">Prenum</label>
-              <input
-                class="w-full p-3 text-black border rounded border-[#d3d3d3]"
-                type="text"
-                name="prenum"
-                id="prenum"
-              />
-            </div>
+        <form class="flex flex-col bg-verd p-4 text-white gap-3 text-7xl lg:text-3xl" hx-post="/api/register"
+          hx-swap="innerHTML" hx-target-500="#any-errors">
+          <div class="flex flex-col">
+            <label for="num">Num</label>
+            <input class="w-full p-3 text-black border rounded border-[#d3d3d3]" type="text" name="num" id="num"
+              required />
+          </div>
+          <div class="flex flex-col">
+            <label for="prenum">Prenum</label>
+            <input class="w-full p-3 text-black border rounded border-[#d3d3d3]" type="text" name="prenum" id="prenum"
+              required />
+          </div>
           <div>
             <div class="flex flex-col">
               <label for="email">E-mail</label>
-              <input
-                class="w-full p-3 text-black border rounded border-[#d3d3d3]"
-                type="email"
-                name="email"
-                id="email"
-              />
+              <input class="w-full p-3 text-black border rounded border-[#d3d3d3]" type="email" name="email" id="email"
+                required />
             </div>
             <div class="flex flex-row pt-4">
-                <label for="agen_vehichel">Jeu construeschel sez in vehichel</label>
-                <input
-                  class="border p-3 size-16 rounded border-[#d3d3d3]"
-                  type="checkbox"
-                  name="agen_vehichel"
-                  id="agen_vehichel"
-                />
+              <label for="agen_vehichel">Jeu construeschel sez in vehichel</label>
+              <div class="flex items-center pl-2">
+                <input class="size-16 lg:size-4 rounded border-[#d3d3d3]" type="checkbox" name="agen_vehichel"
+                  id="agen_vehichel" />
               </div>
-            <div>
+            </div>
             <button class="w-full py-3 mt-4 font-bold text-white bg-black">
               registrar
             </button>
-            </div>
-          </form>
+        </form>
+        <p class="py-2 sm:text-5xl lg:text-sm">Cun senunziar accepteschas ti la <a class="underline"
+            href="/dretg">declaraziun davart la protecziun da datas</a></p>
       </div>
     </div>
+  </div>
 </div>
 {% endblock %}

@@ -15,12 +15,13 @@ module.exports = {
       // you can either spread `colors` to apply all the colors
       ...colors,
       'verd': '#515932',
+      'tgietschen': '#843634',
     },
   },
   safelist: [
     {
       pattern:
-        /(bg|text|border)-(transparent|current|white|purple|midnight|metal|tahiti|silver|bermuda|verd)/,
+        /(bg|text|border)-(transparent|current|white|purple|midnight|metal|tahiti|silver|bermuda|verd|tgietschen)/,
     },
   ],
 };
