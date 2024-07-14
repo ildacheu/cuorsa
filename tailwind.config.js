@@ -16,12 +16,13 @@ module.exports = {
       ...colors,
       'verd': '#515932',
       'tgietschen': '#843634',
+      'blue': '#0000EE',
     },
   },
   safelist: [
     {
       pattern:
-        /(bg|text|border)-(transparent|current|white|purple|midnight|metal|tahiti|silver|bermuda|verd|tgietschen)/,
+        /(bg|text|border)-(transparent|current|white|purple|midnight|metal|tahiti|silver|bermuda|blue|verd|tgietschen)/,
     },
   ],
 };

@@ -3,8 +3,12 @@
 {% block title %}Confirmar l'email!{% endblock %}
 {% block content %}
 {% if success %}
-    <p>Engraziel che ti eis s'annunziaus</p>
+<div class="bg-verd">
+    <p class="text-white text-5xl px-5 text-center lg:text-2xl leading-relaxed">Engraziel che ti eis s'annunziaus</p>
+</div>
 {% else %}
-    <p>Enzatgei ha buc funcziunau, scriva ina email a info@cuorsa.ch</p>
-{% endif %}
+<div class="bg-verd">
+    <p class="text-white text-5xl px-5 text-center lg:text-2xl leading-relaxed">Enzatgei ha buc funcziunau, scriva ina email a info@cuorsa.ch</p>
+</div>
+    {% endif %}
 {% endblock %}
