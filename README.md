@@ -1,0 +1,2 @@
+This is the source code of cuorsa.ch which was used for the sign-up and advertising of a soapbox car race, which took place in August 2024 in Cumpadials. It is written in Rust with the help of the Axum framework and htmx. The website was hosted for multiple months on Digitalocean and generated successful registrations for the race. Further work would include testing and clean up of the code.
+![grafik](https://github.com/user-attachments/assets/2be6c99c-5158-4257-95de-833cc45f6cfc)
